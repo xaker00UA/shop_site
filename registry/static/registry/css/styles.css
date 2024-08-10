@@ -1,0 +1,67 @@
+/* Общие стили для тела страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Стили для заголовков */
+h1, h2, h3 {
+    color: #4CAF50; /* Зеленый цвет для заголовков */
+}
+
+/* Контейнер для контента */
+.container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Стили для формы */
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для меток формы */
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* Стили для полей ввода */
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Стили для кнопок */
+button {
+    background-color: #4CAF50; /* Зеленый цвет кнопок */
+    color: white;
+    padding: 10px 15px;
+    border: 5px solid red;
+    border-radius: 15px;
+    cursor: copy;
+    height: 100px;
+    width: 300px;
+    
+}
+
+/* Эффект при наведении на кнопки */
+button:hover {
+    background-color: blue;
+}
+
+/* Стили для сообщений об ошибках */
+.error {
+    color: red;
+    margin-bottom: 20px;
+}

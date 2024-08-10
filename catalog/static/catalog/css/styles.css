@@ -1,0 +1,62 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0pxs;
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на следующую строку */
+    gap: 0; /* Отступ между элементами */
+    border: 5px solid #ff0000;
+}
+.but {
+    padding: 10px 15px;
+    background-color: #28a745; /* Зеленый цвет для кнопки */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    size: 50px;
+}
+/* Стили для товаров */
+.row {
+    background-color: #fff;
+    border: 0 solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    flex: 0 1 300px; /* Задает ширину каждого товара (25% с учетом отступов) */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.row:hover {
+    transform: scale(1.1);
+}
+
+/* Заголовки */
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    size: 100px;
+}
+
+h1 {
+    font-size: 1.2em;
+    color: #555;
+    size: 80px;
+}
+
+/* Стили для сообщения "Товар не найден" */
+.no-products {
+    text-align: center;
+    font-size: 1.5em;
+    color: #ff0000; /* Красный цвет */
+    margin-top: 20px;
+    width: 100%; /* Устанавливает ширину для сообщения */
+}
