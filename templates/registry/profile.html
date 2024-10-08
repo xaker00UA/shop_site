@@ -1,0 +1,73 @@
+{%extends "html/base.html"%}
+{%load static%}
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="conteiner-content">
+    <link rel="stylesheet" href="{% static 'registry/css/profile.css' %}">
+
+
+    <li>{{user.name}}</li>
+    <li>{{user.email}}</li>
+    <li>{{user.phone_number}}</li>
+    <li>{{user.telegram_account}}</li>
+    <li>{{user.role}}</li>
+
+    <button id="editButton" type="button">Редактировать</button>
+    <button id="editButtonpassword" type="button">Изменить пароль</button>
+    <button id="deleteUserButton" type="button">Удалить пользователя</button>
+    <a id="userItemsLink" href="{% url 'catalog:catalog'%}?seller={{user.id}}">Товары пользователя</a>
+    <a href="{%url 'catalog:add_product'%}">Добавить товар</a>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Редактирование профиля</h2>
+            <form id="editForm">
+                <label for="name">Имя:</label><br>
+                <input type="text" id="name" name="name" value={{user.name}}><br><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" value={{user.email}}><br><br>
+                <label for="phone_number">Телефон:</label><br>
+                <input type="tel" id="phone_number" name="phone_number" value={{user.phone_number}}><br><br>
+                <label for="telegram">Telegram:</label><br>
+                <input type="text" id="telegram" name="telegram" value={{user.telegram_account}}><br><br>
+                <label for="salesman">Продавец:</label>
+                <input type="checkbox" id="salesman" name="salesman" {%if user.role%}checked{%endif%}><br><br>
+                <label id="error"></label><br>
+            </form>
+
+            <!-- Кнопки подтверждения и отмены -->
+            <div class="modal-buttons">
+                <button id="cancelButton" type="button">Отмена</button>
+                <button id="confirmButton" type="button">Подтвердить</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-password" class="modal">
+        <div class="modal-content">
+            <h2>Редактирование пароля</h2>
+            <form id="editFormpassword">
+                <label for="old_password">Введите старый пароль</label><br>
+                <input type="password" id="old_password" name="old_password"><br><br>
+                <label for="new_password">Введите новый пароль</label><br>
+                <input type="password" id="new_password" name="new_password"><br><br>
+                <label for="repaut_password">Повторите пароль</label><br>
+                <input type="password" id="repeat_password" name="repeat_password"><br><br>
+                <label id="error_password"></label><br>
+            </form>
+
+            <!-- Кнопки подтверждения и отмены -->
+            <div class="modal-buttons">
+                <button id="cancelButtonpassword" type="button">Отмена</button>
+                <button id="confirmButtonpassword" type="button">Подтвердить</button>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'registry/js/profile.js' %}"></script>
+
+</div>
+
+{% endblock %}

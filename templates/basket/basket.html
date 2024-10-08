@@ -1,0 +1,27 @@
+{% extends "html/base.html"%}
+{% load static %}
+{% block title %}Basket{% endblock%}
+{% block content %}
+{% if basket.items %}
+<ul>
+    {% for item in basket.items %}
+    <li>
+        <h2>{{ item.name }}</h2>
+        <p>Цена: {{ item.price }} {{ item.currency }}</p>
+        <p>Количество: <span id="quantity-{{ item.id }}">{{ item.quantity }}</span></p>
+        <button type="button" class="increase-quantity" data-item-id="{{ item.id }}">+</button>
+        <button type="button" class="decrease-quantity" data-item-id="{{ item.id }}">-</button>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Общая сумма: {{ basket.total_price }} {{ item.currency }}</h3>
+<h4>Общее количество: {{ basket.total_quantity }}</h4>
+<button type="submit" id="submit">Изменить</button>
+{% else %}
+<p>Ваша корзина пуста.</p>
+{% endif %}
+<script src="{% static 'basket/js/editor_basket.js'%}"></script>
+
+
+{% endblock%}

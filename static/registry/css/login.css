@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css');
+
+* {
+    font-family: 'Open Sans', 'sans-serif', 'FontAwesome';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(52, 56, 61);
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    line-height: 40px;
+}
+
+#wrapper {
+    position: absolute;
+    width: 320px;
+    left: 50%;
+    margin-left: -160px;
+    top: 50%;
+    margin-top: -75px;
+}
+
+/* === Sign in Form === */
+#signin {
+    height: 130px; /* Увеличен для включения сообщения об ошибке */
+    
+    border-radius: 8px;
+    position: relative;
+    background: rgb(28, 30, 33); /* Добавление фона для формы */
+    padding: 10px;
+}
+
+#signin::before {
+    display: block;
+    position: absolute; /* Изменен на absolute */
+    height: 2px;
+    background: rgb(52, 56, 61);
+    content: '';
+    top: 44px;
+    margin-left: 20px;
+    z-index: 1;
+}
+
+#signin input:first-of-type {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+#signin input:last-of-type {
+    border-bottom-right-radius: 8px;
+}
+
+#signin input[type="text"], #signin input[type="email"], #signin input[type="password"] {
+    background: rgb(28, 30, 33);
+    color: rgb(255, 255, 255); /* Цвет текста по умолчанию */
+    border: 0;
+    outline: 0;
+    padding: 10px;
+    width: calc(100% - 20px); /* Корректировка ширины для выравнивания */
+    margin-bottom: 10px; /* Отступ между полями ввода */
+    font-weight: 700;
+    border-radius: 4px; /* Закругление углов */
+}
+
+#signin input[type="text"]:focus, #signin input[type="email"]:focus, #signin input[type="password"]:focus {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 56, 61); /* Цвет фона при фокусировке */
+}
+
+#signin button[type="submit"] {
+    display: block;
+    width: 52px;
+    height: 52px;
+    color: rgb(52, 56, 61);
+    border-radius: 50px;
+    outline: 0;
+    z-index: 2;
+    top: 10px; /* Изменен для лучшего размещения */
+    right: 10px; /* Изменен для лучшего размещения */
+    border: 6px solid rgb(52, 56, 61);
+    font-size: 25px;
+    text-indent: 0px;
+    padding-left: 9px;
+    padding-bottom: 3px;
+    text-align: center;
+     background: rgb(28, 30, 33);/* Добавлен фон */
+    background-image: url("../images/вход.png");
+    background-size: contain; /* Изображение подстраивается под размер кнопки */
+    background-repeat: no-repeat; /* Убирает повторение изображения */
+    background-position: center;
+}
+
+#signin button[type="submit"]:hover {
+    color: rgb(0, 126, 165);
+    text-shadow: 0 0 10px rgb(0, 126, 165);
+    cursor: pointer;
+}
+
+#signin .error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#signin p {
+    color: rgb(79, 85, 97);
+    
+    font-weight: 700;
+    font-size: 100%;
+    margin: 5px 0 0 0;
+    
+    
+}
+
+#signin p > a {
+    color: rgb(111, 119, 135);
+    text-decoration: none;
+}
+
+#signin p > a:hover {
+    border-bottom: 2px solid;
+}
+

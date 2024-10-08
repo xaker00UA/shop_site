@@ -1,0 +1,62 @@
+{% load static %}
+
+
+
+<div id="header" class="containe">
+    <link rel="stylesheet" href="{%static 'css/header.css'%}">
+    <header>
+        <div class="logo-site">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <svg class="bi" width="40" height="32" role="img" aria-label="Бутстрап">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+        </div>
+
+        <ul class="nav">
+            <li><a href="{% url 'home:base'%}" class="nav-link">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Главная</font>
+                    </font>
+                </a></li>
+            <li><a href="{% url 'catalog:catalog'%}" class="nav-link">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Каталог</font>
+                    </font>
+                </a></li>
+            <li><a href="{% url 'basket:basket'%}" class="nav-link">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Корзина</font>
+                    </font>
+                </a></li>
+            <li><a href="#" class="nav-link">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Часто задаваемые вопросы</font>
+                    </font>
+                </a></li>
+            <li><a href="#" class="nav-link">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">О</font>
+                    </font>
+                </a></li>
+        </ul>
+        <div id="user" class="container-button">
+            {% if user.is_authenticated %}
+            <button data-action="profile" data-url="{% url 'user:profile' %}" type="button" class="button">
+                Профиль
+            </button>
+            <button data-action="logout" data-url="{% url 'user:logout' %}" type="button" class="button">
+                Выйти
+            </button>
+            {% else %}
+            <button data-action="login" data-url="{% url 'user:login' %}" type="button" class="button">
+                Авторизоваться
+            </button>
+            <button data-action="sign" data-url="{% url 'user:register_user' %}" type="button" class="button">
+                Зарегистрироваться
+            </button>
+            {% endif %}
+        </div>
+    </header>
+    <script src="{% static 'card/js/header.js' %}"></script>
+</div>

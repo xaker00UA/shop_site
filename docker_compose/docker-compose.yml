@@ -1,0 +1,62 @@
+
+
+services:
+  db:
+    restart: always
+    container_name: db
+    image: postgres:latest
+    ports:
+      - "4000:5432"  # Порт на хосте:порт внутри контейнера
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  dbtest:
+    restart: always
+    image: postgres:latest
+    container_name: testdb
+    ports:
+      - "5000:5432"  
+    environment:
+      POSTGRES_DB: testdatabase
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpassword
+    volumes:
+      - dbtest_data:/var/lib/postgresql/data
+  shop:
+    build:
+      context: ../
+    ports:
+      - "8000:8000"
+    container_name: shop
+    depends_on:
+      - dbtest
+      - db
+    environment:
+      DEBUG: "False"
+      USER: "testuser"
+      NAME: "testdatabase"
+      PASSWORD: "testpassword"
+      HOST: "testdb"
+      PORT: "5432"
+      SECRET_KEY: "secretkey"
+    volumes:
+      - static_volume:/app/staticfiles
+
+  nginx:
+   container_name: nginx
+   image: nginx:latest
+   volumes: 
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    - static_volume:/static
+   ports:
+    - "80:80"
+   depends_on:
+    - shop
+volumes:
+  db_data:
+  dbtest_data:
+  static_volume:

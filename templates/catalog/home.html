@@ -1,0 +1,32 @@
+{%extends "html/base.html"%} {%load static%}{%block title %}Каталог{%endblock%}
+
+{%block content%}
+
+
+<ul>
+  <link rel="stylesheet" href="{% static 'catalog/css/styles.css' %}" />
+  {% for product in products %}
+  <li>{{ product.name }} - {{ product.price }}- {{ product.seller.name }}-{{ product.category }}<a
+      href="{% url 'catalog:product' product.id%}">Перейти</a></li>
+  {% empty %}
+  <li>Нет доступных товаров</li>
+  {% endfor %}
+</ul>
+
+<!-- Пагинация -->
+<div>
+  {% if is_paginated %}
+  <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+  <div>
+    {% if page_obj.has_previous %}
+    <a href="?page=1">Первая</a>
+    <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

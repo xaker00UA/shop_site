@@ -1,0 +1,47 @@
+#header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  background: white;
+  align-items: center;
+  justify-content: space-between; /* Размещаем элементы по краям */
+  align-items: center; /* Вертикальное выравнивание по центру */
+  padding: 10px 20px; /* Добавляем отступы для красоты */
+}
+
+header {
+  display: flex;
+  width: 70%;
+  justify-content: center;
+  margin: 0 auto;
+}
+/* header .logo-site {
+  float: left;
+} */
+/* header .container-button {
+  float: right;
+} */
+.nav {
+  display: flex; /* Flex для горизонтального выравнивания элементов */
+  list-style-type: none; /* Убираем точки */
+  margin: 0; /* Убираем отступы */
+  padding: 0; /* Убираем внутренние отступы */
+  justify-content: center; /* Центрируем навигацию */
+  flex-grow: 1; /* Заставляем навигацию расти, занимая доступное пространство */
+}
+.nav .nav-link {
+  height: inherit;
+  font-size: 18px;
+}
+
+.nav li {
+  margin-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 30px;
+  height: 40px;
+  font-size: 20px;
+}
+.nav li:last-child {
+  margin-right: 0px;
+}

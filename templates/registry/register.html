@@ -1,0 +1,24 @@
+{%extends "html/base.html"%}
+{% load static %}
+{%block title %}Register{%endblock%}
+
+{%block content %}
+
+<link rel="stylesheet" href="{% static 'registry/css/login.css' %}">
+<div id="wrapper">
+  <h1>Регистрация</h1>
+  <form id="signin" method="POST" action="" autocomplete="off" style="height: 240px;">
+    {% csrf_token %}
+    <input type="text" id="name" name="name" placeholder="Имя" />
+    <input type="email" id="email" name="email" placeholder="email" />
+    <input type="password" id="password" name="password1" placeholder="Введите пароль" style="width: 100%;" />
+    <input type="password" id="repaut_password" name="password2" placeholder="Повторите пароль" style="width: 100%;" />
+    <button type="submit"></button>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    <p>У вас уже есть аккаунт <a href="{% url 'user:login' %}">Войти</a></p>
+  </form>
+</div>
+
+{% endblock %}

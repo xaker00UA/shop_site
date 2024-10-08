@@ -1,0 +1,18 @@
+{% extends "html/base.html"%}
+{%block title %}Order{%endblock%}
+{%block content %}
+
+
+<div id="wrapper">
+    <h1>Заказ</h1>
+    <form id="signin" method="POST" action="" autocomplete="off">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Upload</button>
+    </form>
+
+
+
+</div>
+
+{% endblock %}

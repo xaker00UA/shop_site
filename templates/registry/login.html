@@ -1,0 +1,22 @@
+{%extends "html/base.html"%}
+{% load static %}
+{%block title %}Login{%endblock%}
+
+{%block content %}
+
+<link rel="stylesheet" href="{% static 'registry/css/login.css' %}">
+<div id="wrapper">
+  <h1>Войти</h1>
+  <form id="signin" method="POST" action="" autocomplete="off">
+    {% csrf_token %}
+    <input type="email" id="email" name="email" placeholder="email" value="{%if email%}{{email}}{%endif%}" />
+    <input type="password" id="password" name="password1" placeholder="password" />
+    <button type="submit"></button>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    <p> <a href="{% url 'user:register_user' %}">Зарегистрироваться</a></p>
+  </form>
+</div>
+
+{% endblock %}

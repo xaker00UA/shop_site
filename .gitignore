@@ -1,0 +1,19 @@
+.env
+media
+secret_key.py
+__pycache__
+migrations
+task.txt
+skript.py
+index.html
+settings.yaml
+test_settings.yaml
+test.json
+completed tasks.txt
+test_shop.py
+test.py
+.venv
+.vscode
+.vscode
+.dockerignore
+launch.json

@@ -21,8 +21,12 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("catalog/", include("catalog.urls")),
-    path("login/", include("registry.urls")),
+    path("catalog/", include("catalog.urls", namespace="catalog")),
+    path("login/", include("registry.urls", namespace="user")),
+    path("basket/", include("basket.urls", namespace="basket")),
+    path("order/", include("order.urls", namespace="order")),
+    path("", include("card.urls", namespace="home")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 
