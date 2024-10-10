@@ -1,0 +1,18 @@
+.parent-container {
+  max-width: none; /* Убирает ограничение по ширине */
+}
+#description {
+  width: 30%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.small-heading {
+  font-size: 14px; /* Или любой другой размер */
+  line-height: 1.5; /* Опционально для лучшего расстояния между строками */
+}
+
+.product-image {
+  width: 400px;
+  height: 400px;
+}

@@ -32,7 +32,7 @@ class HomePageView(View):
         try:
             data = json.loads(request.body)
             product_id = data.get("product_id")
-            res = Crud_Basket.add_to_basket(request.user, product_id=product_id)
+            res = Crud_Basket.add_to_basket(request, product_id=product_id)
             return JsonResponse(res)
         except:
             return JsonResponse({"status": "error"})

@@ -77,12 +77,20 @@ def parse(string, category_id, seller_id):
 async def main():
     products = []
     htmls = []
-    List_url = [("notebooks/c80004/", 4, 1), ("tablets/c130309/", 3, 1)]
+    db = DB()
+    cat = db.get_id_categories()
+    List_url = [
+        ("notebooks/c80004/", "Ноутбук", 1),
+        ("tablets/c130309/", "Планшет", 1),
+        ("computers/c80095/", "Компьютер", 1),
+        ("mobile-phones/c80003/", "Телефон", 1),
+    ]
+
     for url in List_url:
         htmls.append(await task(url[0]))
     for html, url in zip(htmls, List_url):
-        products.extend(parse(html, category_id=url[1], seller_id=url[2]))
-    db = DB()
+        products.extend(parse(html, category_id=cat.get(url[1]), seller_id=url[2]))
+
     db.add_product(products)
     db.close()
     return True

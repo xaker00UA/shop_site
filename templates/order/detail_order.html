@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}Список заказов{% endblock %}
 {% block content %}
+<p>Сделать заказ можно кликнув <a href="{%url 'order:order'%}">здесь</a></p>
 <h1>Список заказов</h1>
 <div>
     {% for order in orders %}

@@ -1,13 +1,51 @@
 {%extends "html/base.html"%} {%load static%}{%block title %}Каталог{%endblock%}
 
 {%block content%}
+<link rel="stylesheet" href="{% static 'catalog/css/styles.css' %}" />
 
+<div>
+  <form method="GET" action="">
+    <label>Цена минимум</label>
+    <input type="text" name="min_price" aria-label="Цена минимум" value="{{ request.GET.min_price|default:0 }}">
 
-<ul>
-  <link rel="stylesheet" href="{% static 'catalog/css/styles.css' %}" />
+    <label>Цена максимум</label>
+    <input type="text" name="max_price" aria-label="Цена максимум" value="{{ request.GET.max_price|default:0 }}">
+
+    <button type="submit">Фильтровать</button>
+  </form>
+
+  <!-- Ссылки для сортировки -->
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&sort=cheap">Сортировка по цене
+    (возрастание)</a> |
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&sort=expensive">Сортировка по
+    цене (убывание)</a> |
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&sort=name">Сортировка по имени
+    (А-Я)</a> |
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&sort=name_desc">Сортировка по
+    имени (Я-А)</a> |
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&sort=newest">Сортировка по
+    дате</a>
+</div>
+
+<div>
+  <!-- Ссылки для категорий -->
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&category=1">Телефоны</a> |
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&category=2">Компьютеры</a> |
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&category=3">Планшеты</a> |
+  <a href="?min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}&category=4">Ноутбуки</a>
+</div>
+<form action="" method="get"><button type="reset">Сбросить параметры</button></form>
+<ul class="product-list">
   {% for product in products %}
-  <li>{{ product.name }} - {{ product.price }}- {{ product.seller.name }}-{{ product.category }}<a
-      href="{% url 'catalog:product' product.id%}">Перейти</a></li>
+  <li class="product-item">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy" class="product-image" />
+    {% elif product.image_url %}
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy" class="product-image" />
+    {%endif%}
+    <div>{{ product.name }} - {{ product.price }} - {{ product.seller.name }} - {{ product.category }}</div>
+    <a href="{% url 'catalog:product' product.id %}">Перейти</a>
+  </li>
   {% empty %}
   <li>Нет доступных товаров</li>
   {% endfor %}

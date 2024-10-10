@@ -8,12 +8,12 @@ urlpatterns = [
     path("add", CreateProduct.as_view(), name="add_product"),
     path("product/<int:product_id>/", ProductPageView.as_view(), name="product"),
     path(
-        "product/<int:product_id>/update",
+        "product/<int:product_id>/update/",
         ProductUpdate.as_view(),
         name="product_update",
     ),
     path(
-        "product/<int:product_id>/delete",
+        "product/<int:product_id>/delete/",
         ProductDelete.as_view(),
         name="product_delete",
     ),

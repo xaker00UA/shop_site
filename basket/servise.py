@@ -16,15 +16,23 @@ class Crud_Basket:
         return basket
 
     @staticmethod
-    def add_to_basket(user, product_id):
+    def add_to_basket(request, product_id):
         product = Product.objects.get(id=product_id)
-        basket = Basket.objects.filter(user=user, product=product).first()
+        user = request.user
+        if user.is_authenticated:
+            basket = Basket.objects.filter(user=user, product=product).first()
+        else:
+            key = request.session.session_key
+            basket = Basket.objects.filter(session_key=key, product=product).first()
         if basket:
             q = basket.quantity
             q += 1
             basket.update_quantity(q)
         else:
-            basket = Basket.objects.create(user=user, product=product)
+            if user.is_authenticated:
+                basket = Basket.objects.create(user=user, product=product)
+            else:
+                basket = Basket.objects.create(session_key=key, product=product)
         return {"success": "ok"}
 
     @staticmethod

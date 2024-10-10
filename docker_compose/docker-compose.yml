@@ -45,6 +45,7 @@ services:
       SECRET_KEY: "secretkey"
     volumes:
       - static_volume:/app/staticfiles
+      - media_volume:/app/media
 
   nginx:
    container_name: nginx
@@ -52,6 +53,7 @@ services:
    volumes: 
     - ./nginx.conf:/etc/nginx/nginx.conf
     - static_volume:/static
+    - media_volume:/media
    ports:
     - "80:80"
    depends_on:
@@ -60,3 +62,4 @@ volumes:
   db_data:
   dbtest_data:
   static_volume:
+  media_volume:

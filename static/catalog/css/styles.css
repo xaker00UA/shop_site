@@ -1,53 +1,77 @@
 /* Общие стили */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
 }
 
 .but {
-    padding: 10px 15px;
-    background-color: #28a745; /* Зеленый цвет для кнопки */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    size: 50px;
+  padding: 10px 15px;
+  background-color: #28a745; /* Зеленый цвет для кнопки */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  size: 50px;
 }
 /* Стили для товаров */
 .row {
-    background-color: #fff;
-    border: 0 solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    flex: 0 1 300px; /* Задает ширину каждого товара (25% с учетом отступов) */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+  background-color: #fff;
+  border: 0 solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  flex: 0 1 300px; /* Задает ширину каждого товара (25% с учетом отступов) */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
 .row:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* Заголовки */
 h2 {
-    font-size: 1.5em;
-    color: #333;
-    size: 100px;
+  font-size: 1.5em;
+  color: #333;
+  size: 100px;
 }
 
 h1 {
-    font-size: 1.2em;
-    color: #555;
-    size: 80px;
+  font-size: 1.2em;
+  color: #555;
+  size: 80px;
 }
 
 /* Стили для сообщения "Товар не найден" */
 .no-products {
-    text-align: center;
-    font-size: 1.5em;
-    color: #ff0000; /* Красный цвет */
-    margin-top: 20px;
-    width: 100%; /* Устанавливает ширину для сообщения */
+  text-align: center;
+  font-size: 1.5em;
+  color: #ff0000; /* Красный цвет */
+  margin-top: 20px;
+  width: 100%; /* Устанавливает ширину для сообщения */
+}
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.product-item {
+  width: 30%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* .product-image {
+  width: 500px;
+  height: 500px;
+} */
+
+/* Оформление ссылок сортировки */
+.sort-links {
+  margin-bottom: 20px;
 }

@@ -29,16 +29,12 @@
                         <font style="vertical-align: inherit;">Корзина</font>
                     </font>
                 </a></li>
-            <li><a href="#" class="nav-link">
+            <li><a href="{% url 'order:order_info'%}" class="nav-link">
                     <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Часто задаваемые вопросы</font>
+                        <font style="vertical-align: inherit;">Заказы</font>
                     </font>
                 </a></li>
-            <li><a href="#" class="nav-link">
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">О</font>
-                    </font>
-                </a></li>
+
         </ul>
         <div id="user" class="container-button">
             {% if user.is_authenticated %}

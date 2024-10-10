@@ -23,8 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (deleteButton) {
     deleteButton.addEventListener("click", function () {
-      const productId = this.getAttribute("data-id");
-      fetch(`${currentUrl}delete`, {
+      fetch(`${currentUrl}delete/`, {
         method: "DELETE",
         headers: {
           "X-CSRFToken": csrftoken,
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           if (data.status === "success") {
             console.log("Товар удален");
-            window.history.back(); // Перенаправление на предыдущую страницу
+            window.location.href = document.referrer; // Перенаправление на предыдущую страницу
           }
         })
         .catch((error) => console.error("Ошибка:", error));

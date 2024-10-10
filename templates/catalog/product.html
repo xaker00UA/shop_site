@@ -7,23 +7,31 @@
 
 {% block content %}
 {% csrf_token %}
+<link rel="stylesheet" href="{% static 'catalog/css/product.css' %}">
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <h1>{{ product.name }}</h1>
-            <p>{{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
+            <p> <a href="{{product.url}}">Оригинальная ссылка</a></p>
         </div>
 
         <div class="col-md-6">
             {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image" />
             {% elif product.image_url %}
-            <img src="{{product.image_url}}" alt="{{ prod.name }}" />
+            <img src="{{product.image_url}}" alt="{{ prod.name }}" class="product-image" />
             {% endif %}
         </div>
-        {%if request.user == product.user%}
+        <div class="parent-container" style="width: 100%;">
+            <div id="description">
+                <h1>Описание:</h1>
+                {{ product.description|safe }}
+            </div>
+        </div>
+        {%if request.user == product.seller%}
         <button type="button" data-id="{{product.id}}" id="delete_button">Delete</button>
+        <p>Обновить товар кликни <a href="{%url 'catalog:product_update'%}">здесь</a></p>
         {% endif%}
         <button type="button" data-id="{{product.id}}" id="buy_button">Buy</button>
 

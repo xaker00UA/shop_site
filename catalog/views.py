@@ -41,12 +41,12 @@ class CatalogPageView(ListView):
     model = Product
     template_name = "catalog/home.html"
     context_object_name = "products"
-    paginate_by = 20
+    paginate_by = 21
 
     def get_queryset(self):
         queryset = Product.objects.select_related("category", "seller")
-        price_min = self.request.GET.get("price_min")
-        price_max = self.request.GET.get("price_max")
+        price_min = self.request.GET.get("min_price")
+        price_max = self.request.GET.get("max_price")
         category = self.request.GET.get("category")
         seller = self.request.GET.get("seller")
         sort = self.request.GET.get("sort")
@@ -128,15 +128,7 @@ class ProductUpdate(UpdateView):
 class ProductDelete(DeleteView):
     model = Product
     pk_url_kwarg = "product_id"
-    http_method_names = ("DELETE",)
-
-    def get_success_url(
-        self,
-    ):
-
-        return "test"
-        # return reverse("catalog:product", args="seller=1")
-        # return reverse_lazy("catalog:catalog", args=)
+    http_method_names = ["delete", "post"]
 
     def delete(self, request, *args, **kwargs):
         product = self.get_object()
@@ -157,40 +149,9 @@ class ProductDelete(DeleteView):
             "data": {
                 "message": "Товар успешно удалён.",
                 "product_id": product.id,
-                "success_url": self.get_success_url(),
             },
         }
         return JsonResponse(data=data, status=200)
-
-    # def post(self, request, *args, **kwargs):
-    #     # Возвращаем ошибку для POST запросов (если DELETE только разрешен)
-    #     data = {
-    #         "status": "error",
-    #         "error": {
-    #             "message": "POST-запросы на этот URL не поддерживаются.",
-    #             "code": 405,
-    #         },
-    #     }
-    #     return JsonResponse(
-    #         data=data,
-    #         status=405,
-    #         json_dumps_params={"indent": 4, "ensure_ascii": False},
-    #     )
-
-    # def get(self, request, *args, **kwargs):
-
-    #     data = {
-    #         "status": "error",
-    #         "error": {
-    #             "message": "GET-запросы на этот URL не поддерживаются.",
-    #             "code": 405,
-    #         },
-    #     }
-    #     return JsonResponse(
-    #         data=data,
-    #         status=405,
-    #         json_dumps_params={"indent": 4, "ensure_ascii": False},
-    #     )
 
 
 @method_decorator(login_required, name="dispatch")
@@ -202,6 +163,7 @@ class CreateProduct(CreateView):
 
     def form_valid(self, form):
         if self.user_has_seller_role():
+            form.instance.seller = self.request.user
             return super().form_valid(form)
         url = reverse("user:profile")
         res = (
